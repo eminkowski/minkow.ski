@@ -13,15 +13,42 @@ body {
   background-color: #020202;
   color: #f0f0f0;
   font-family: var(--font-sans);
+  min-height: 100dvh;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  height: 100dvh;
+}
+
+/* Scroll containers: main page area + desktop case study pane */
+.scroll-pane {
+  overflow-y: auto;
   overflow-x: hidden;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.28) rgba(255, 255, 255, 0.06);
 }
 
-/* Deep focus: non-hovered bento cards recede when any sibling is hovered */
-.bento:has(> *:hover) > *:not(:hover) {
-  opacity: 0.45;
-  transition: opacity 0.2s ease-out;
+.scroll-pane::-webkit-scrollbar {
+  width: 8px;
 }
 
-.bento > * {
-  transition: opacity 0.2s ease-out;
+.scroll-pane::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+}
+
+.scroll-pane::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.22);
+  border-radius: 999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.scroll-pane::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.34);
 }

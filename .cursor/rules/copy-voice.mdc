@@ -1,0 +1,30 @@
+---
+description: Conversational copy voice for portfolio user-facing text
+globs: "{src/**/*.{ts,tsx},index.html,README.md}"
+alwaysApply: false
+---
+
+# Copy voice (minkow.ski)
+
+All user-facing strings must sound like a real person wrote them.
+
+## Punctuation
+
+- Never use em dashes (—) or en dashes (–) in copy, titles, or README text.
+- Use a plain hyphen (-) only when grammatically needed, or rewrite the sentence.
+- `npm run check:copy` fails CI if — or – appears in scanned files.
+
+## Tone
+
+- Conversational, warm, direct. Read it out loud; if it sounds like a brochure, rewrite it.
+- Prefer short sentences over nested asides.
+- Avoid stiff phrases: "structural tension", "leverage", "utilize", "facilitate", "robust solution".
+
+## Naming
+
+- Use **Minko Labs** for the studio in portfolio copy and links.
+- Use **LLC** only when stating ownership ("my own LLC") or when a legal entity name is required. Do not append "LLC" elsewhere by default.
+
+## Where this applies
+
+- JSX text, `document.title`, `index.html`, `README.md`, and string literals in `src/data/`.

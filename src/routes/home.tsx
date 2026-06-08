@@ -1,41 +1,26 @@
-import { Link } from '@tanstack/react-router'
 import { ScrambleText } from '../components/ScrambleText'
-import { card, chip, label, linkCard } from '../lib/styles'
-
-const capabilities = [
-  'Systems Architecture',
-  'API Design',
-  'Performance Engineering',
-  'Full-Stack Development',
-  'Technical Leadership',
-]
-
-// Update these with your real numbers
-const metrics = [
-  { value: '20', label: 'yrs exp' },
-  { value: '6',  label: 'companies' },
-  { value: '10', label: 'engineers led' },
-]
+import { Card, LinkCard, LinkArrow, PageGrid, TagList } from '../components/ui'
+import { CAPABILITIES, HOME_LINKS, METRICS, homeTileClass } from '../data/home'
+import { label, linkText, linkTextMuted, linkTitle, textClass } from '../lib/styles'
+import { SITE } from '../lib/site'
+import { cn } from '../lib/cn'
 
 export function Home() {
   return (
-    <div className="bento grid grid-cols-1 md:grid-cols-3 gap-2.5 w-full max-w-3xl">
-
-      {/* Hero */}
-      <div className={`${card} md:col-span-2 md:row-span-2 min-h-56 justify-between`}>
+    <PageGrid cols={3}>
+      <Card className={cn('gap-4', homeTileClass('hero'))}>
         <div className="flex flex-col gap-2">
           <p className={label}>Portfolio</p>
           <h1 className="text-4xl sm:text-5xl font-black tracking-tight text-white leading-none">
-            <ScrambleText text="Eric Minkowski" duration={1800} />
+            <ScrambleText text={SITE.name} duration={1800} />
           </h1>
+          <p className={`font-mono text-sm ${textClass.secondary}`}>
+            {SITE.title}<span className="animate-pulse">_</span>
+          </p>
         </div>
-        <p className="font-mono text-sm text-white/70">
-          Lead Software Engineer<span className="animate-pulse">_</span>
-        </p>
-      </div>
+      </Card>
 
-      {/* Status */}
-      <div className={`${card} justify-between`}>
+      <Card className={cn('justify-between', homeTileClass('status'))}>
         <p className={label}>Status</p>
         <div className="flex items-center gap-2">
           <span className="relative flex h-2 w-2 shrink-0">
@@ -44,64 +29,84 @@ export function Home() {
           </span>
           <span className="text-sm text-emerald-400/90">Available for roles</span>
         </div>
-      </div>
+      </Card>
 
-      {/* GitHub */}
-      <a href="https://github.com/eminkowski" target="_blank" rel="noopener noreferrer" className={linkCard}>
+      <LinkCard href={HOME_LINKS.github} className={homeTileClass('github')}>
         <p className={label}>GitHub</p>
-        <p className="text-sm text-white/80 group-hover:text-white transition-colors">eminkowski ↗</p>
-      </a>
+        <p className={linkText}>
+          {HOME_LINKS.socialHandle} <LinkArrow />
+        </p>
+      </LinkCard>
 
-      {/* Resume */}
-      <a href="/resume" target="_blank" rel="noopener noreferrer" className={linkCard}>
-        <p className={label}>Resume</p>
-        <p className="text-sm text-white/80 group-hover:text-white transition-colors">View PDF ↗</p>
-      </a>
+      <LinkCard to={HOME_LINKS.featuredRoute} className={homeTileClass('featured')}>
+        <p className={label}>Featured</p>
+        <p className={linkTitle}>Trudge</p>
+        <p className={`text-sm ${textClass.muted} leading-relaxed`}>
+          Local-first, encrypted mobile product with 950+ tests.
+        </p>
+        <p className={linkTextMuted}>
+          Read case study <LinkArrow kind="forward" />
+        </p>
+      </LinkCard>
 
-      {/* Capabilities */}
-      <div className={card}>
+      <LinkCard to={HOME_LINKS.projectsRoute} className={homeTileClass('projects')}>
+        <p className={label}>Projects</p>
+        <p className={linkText}>
+          View all <LinkArrow kind="forward" />
+        </p>
+      </LinkCard>
+
+      <LinkCard href={HOME_LINKS.studio} className={homeTileClass('studio')}>
+        <p className={label}>Studio</p>
+        <p className={linkText}>
+          {HOME_LINKS.studioName} <LinkArrow />
+        </p>
+      </LinkCard>
+
+      <Card className={homeTileClass('capabilities')}>
         <p className={label}>Capabilities</p>
-        <div className="flex flex-wrap gap-1.5">
-          {capabilities.map(c => (
-            <span key={c} className={chip}>{c}</span>
-          ))}
-        </div>
-      </div>
+        <TagList tags={CAPABILITIES} />
+      </Card>
 
-      {/* LinkedIn */}
-      <a href="https://linkedin.com/in/eminkowski" target="_blank" rel="noopener noreferrer" className={linkCard}>
-        <p className={label}>LinkedIn</p>
-        <p className="text-sm text-white/80 group-hover:text-white transition-colors">eminkowski ↗</p>
-      </a>
-
-      {/* Numbers */}
-      <div className={card}>
+      <Card className={homeTileClass('numbers')}>
         <p className={label}>By the numbers</p>
-        <div className="flex gap-6">
-          {metrics.map(m => (
+        <div className="flex flex-wrap gap-4 sm:gap-6">
+          {METRICS.map(m => (
             <div key={m.label} className="flex flex-col gap-0.5">
               <span
                 className="font-mono text-2xl font-black text-white"
                 style={{ filter: 'drop-shadow(0 0 8px rgba(255,255,255,0.2))' }}
-              >{m.value}</span>
-              <span className="font-mono text-[10px] text-white/50 uppercase tracking-widest">{m.label}</span>
+              >
+                {m.value}
+              </span>
+              <span className={`font-mono text-[10px] ${textClass.muted} uppercase tracking-widest`}>
+                {m.label}
+              </span>
             </div>
           ))}
         </div>
-      </div>
+      </Card>
 
-      {/* Email */}
-      <a href="mailto:eric@minkow.ski" className={linkCard}>
+      <LinkCard href={HOME_LINKS.resume} className={homeTileClass('resume')}>
+        <p className={label}>Resume</p>
+        <p className={linkText}>
+          View PDF <LinkArrow />
+        </p>
+      </LinkCard>
+
+      <LinkCard href={HOME_LINKS.linkedin} className={homeTileClass('linkedin')}>
+        <p className={label}>LinkedIn</p>
+        <p className={linkText}>
+          {HOME_LINKS.socialHandle} <LinkArrow />
+        </p>
+      </LinkCard>
+
+      <LinkCard href={`mailto:${HOME_LINKS.email}`} className={homeTileClass('email')}>
         <p className={label}>Email</p>
-        <p className="font-mono text-sm text-white/80 group-hover:text-white transition-colors">eric@minkow.ski ↗</p>
-      </a>
-
-      {/* Projects */}
-      <Link to="/projects" className={linkCard}>
-        <p className={label}>Projects</p>
-        <p className="text-sm text-white/80 group-hover:text-white transition-colors">View work →</p>
-      </Link>
-
-    </div>
+        <p className={cn(linkText, 'break-all sm:break-normal')}>
+          {HOME_LINKS.email} <LinkArrow />
+        </p>
+      </LinkCard>
+    </PageGrid>
   )
 }

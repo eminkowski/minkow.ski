@@ -6,7 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "lint": "eslint .",
+    "check:copy": "tsx scripts/check-copy.ts",
+    "test": "vitest run",
+    "typecheck": "tsc -b",
+    "check": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "lint": "eslint . && npm run check:copy",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -26,8 +30,10 @@
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.5.0",
     "tailwindcss": "^4.2.4",
+    "tsx": "^4.21.0",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
-    "vite": "^8.0.10"
+    "vite": "^8.0.10",
+    "vitest": "^4.0.18"
   }
 }

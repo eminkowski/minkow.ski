@@ -1,0 +1,45 @@
+---
+description: Portfolio code organization and quality bar
+alwaysApply: true
+---
+
+# Code standards (minkow.ski)
+
+## Structure
+
+| Concern | Location |
+|---------|----------|
+| Reusable UI | `src/components/ui/` |
+| Feature components | `src/components/` |
+| Copy and content | `src/data/` |
+| Routes / paths | `src/lib/routes.ts` |
+| Site config | `src/lib/site.ts` |
+| Styles tokens | `src/lib/styles.ts` |
+| Pure utilities | `src/lib/` |
+| Route screens | `src/routes/` (orchestration only) |
+
+## Rules
+
+- Screens compose components; they do not define one-off layout primitives inline.
+- User-facing strings live in `src/data/`, not hardcoded across multiple route files.
+- Use `Card`, `LinkCard`, `PageGrid`, `ExternalLink`, and style tokens from `lib/styles.ts`.
+- Route paths: `ROUTES` from `lib/routes.ts`. Site URLs: `SITE` from `lib/site.ts`.
+- Class names: `cn()` from `lib/cn.ts`.
+- Tests for pure logic in `src/**/*.test.ts`. Run `npm run check` before commit.
+
+## Responsive breakpoints
+
+| Tier | Breakpoint | Grid |
+|------|------------|------|
+| Mobile | default | 1 column |
+| Tablet | `sm:` (640px+) | 2 columns |
+| Desktop | `lg:` (1024px+) | 3 columns (home bento only) |
+
+- Layout tokens live in `lib/layout.ts`. Page shells use `PageGrid` / `ScrollPage`.
+- Home bento desktop placement uses `lg:col-start` / `lg:row-start`, not `md:`.
+- Prefer `dvh` and `safe-area-inset-*` for mobile viewport and notched devices.
+
+## Resume redirect
+
+- App links use `/resume` only. Never put the Google Drive URL in `src/`.
+- Redirect target lives in `config/resume.ts` + `public/_redirects` (prod) + Vite middleware (dev).
