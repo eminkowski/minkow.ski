@@ -1,5 +1,6 @@
 export { BodyText } from './BodyText'
 export { BulletList } from './BulletList'
+export { CaseStudyScreenshot } from './CaseStudyScreenshot'
 export { Card } from './Card'
 export { ExternalLink } from './ExternalLink'
 export { LinkArrow } from './LinkArrow'

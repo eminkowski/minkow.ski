@@ -4,6 +4,7 @@ import { Root } from './routes/root'
 import { Home } from './routes/home'
 import { Projects } from './routes/projects'
 import { ProjectsTrudge } from './routes/projects-trudge'
+import { ProjectsSupportDesk } from './routes/projects-support-desk'
 import { About } from './routes/about'
 
 const rootRoute = createRootRoute({ component: Root })
@@ -26,6 +27,12 @@ const projectsTrudgeRoute = createRoute({
   component: ProjectsTrudge,
 })
 
+const projectsSupportDeskRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: ROUTES.projectsSupportDesk,
+  component: ProjectsSupportDesk,
+})
+
 const aboutRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: ROUTES.about,
@@ -36,6 +43,7 @@ const routeTree = rootRoute.addChildren([
   homeRoute,
   projectsRoute,
   projectsTrudgeRoute,
+  projectsSupportDeskRoute,
   aboutRoute,
 ])
 

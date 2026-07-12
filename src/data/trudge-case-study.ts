@@ -11,6 +11,7 @@ export const TRUDGE_CASE_STUDY = {
     studio: SITE.studioName,
     studioUrl: SITE.studio,
     status: 'Pre-launch',
+    trademark: 'US trademark filed',
   },
   summary: [
     'Trudge is a privacy-first mobile companion built for people managing sensitive personal health and recovery data on their phones. The product is local-first: the app is the system of record, and the backend exists only for public reference data, app configuration, and optional encrypted backups the server cannot read.',

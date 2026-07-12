@@ -14,6 +14,7 @@ export const SITE = {
   resume: '/resume',
   trudge: 'https://trudge.app',
   repo: 'https://github.com/eminkowski/minkow-ski',
+  supportDeskRepo: 'https://github.com/eminkowski/support-desk-mcp',
 } as const
 
 export function pageTitle(pathname: string): string {
@@ -24,5 +25,6 @@ const PAGE_TITLES: Record<AppRoute, string> = {
   [ROUTES.home]: `${SITE.name} | ${SITE.domain}`,
   [ROUTES.projects]: `Projects | ${SITE.domain}`,
   [ROUTES.projectsTrudge]: `Trudge case study | ${SITE.domain}`,
+  [ROUTES.projectsSupportDesk]: `Support Desk MCP | ${SITE.domain}`,
   [ROUTES.about]: `About | ${SITE.domain}`,
 }

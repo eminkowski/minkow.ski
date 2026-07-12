@@ -1,9 +1,10 @@
 import { Link } from '@tanstack/react-router'
-import { ArchitectureDiagram } from '../components/ArchitectureDiagram'
+import { SupportDeskDiagram } from '../components/SupportDeskDiagram'
 import {
   BodyText,
   BulletList,
   Card,
+  CaseStudyScreenshot,
   ExternalLink,
   LinkArrow,
   MetaField,
@@ -11,13 +12,13 @@ import {
   Section,
   TagList,
 } from '../components/ui'
-import { TRUDGE_CASE_STUDY } from '../data/trudge-case-study'
+import { SUPPORT_DESK_CASE_STUDY } from '../data/support-desk-case-study'
 import { ROUTES } from '../lib/routes'
 import { label, metaLink, textClass } from '../lib/styles'
 
-const study = TRUDGE_CASE_STUDY
+const study = SUPPORT_DESK_CASE_STUDY
 
-export function ProjectsTrudge() {
+export function ProjectsSupportDesk() {
   return (
     <ScrollPage>
       <Card>
@@ -29,11 +30,21 @@ export function ProjectsTrudge() {
         <p className={`text-sm ${textClass.muted} leading-relaxed`}>{study.tagline}</p>
         <TagList tags={study.tags} />
         <div className="flex flex-wrap gap-4 pt-1">
-          <ExternalLink href={study.url} variant="meta">
-            trudge.app <LinkArrow />
+          <ExternalLink href={study.repo} variant="meta">
+            GitHub <LinkArrow />
           </ExternalLink>
-          <span className={`font-mono text-xs ${textClass.muted}`}>code · private</span>
+          <span className={`font-mono text-xs ${textClass.muted}`}>code · public</span>
         </div>
+      </Card>
+
+      <Card>
+        <Section title="Screenshots">
+          <div className="flex flex-col gap-6">
+            {study.screenshots.map(shot => (
+              <CaseStudyScreenshot key={shot.src} {...shot} />
+            ))}
+          </div>
+        </Section>
       </Card>
 
       <Card>
@@ -46,20 +57,15 @@ export function ProjectsTrudge() {
 
       <Card>
         <Section title="Overview">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 text-sm">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
             <MetaField label="Role">
               <p className={textClass.secondary}>{study.role.title}</p>
             </MetaField>
-            <MetaField label="Studio">
-              <ExternalLink href={study.role.studioUrl} variant="text">
-                {study.role.studio} <LinkArrow />
-              </ExternalLink>
+            <MetaField label="Context">
+              <p className={textClass.secondary}>{study.role.context}</p>
             </MetaField>
             <MetaField label="Status">
               <p className={textClass.secondary}>{study.role.status}</p>
-            </MetaField>
-            <MetaField label="Trademark">
-              <p className={textClass.secondary}>{study.role.trademark}</p>
             </MetaField>
           </div>
         </Section>
@@ -75,7 +81,7 @@ export function ProjectsTrudge() {
 
       <Card>
         <Section title="Architecture">
-          <ArchitectureDiagram />
+          <SupportDeskDiagram />
           {study.architecture.map(entry => (
             <BodyText key={entry.body.slice(0, 32)}>
               {entry.label && <span className={textClass.link}>{entry.label}</span>}
@@ -124,14 +130,6 @@ export function ProjectsTrudge() {
       <Card>
         <Section title="What I owned">
           <BulletList items={study.ownership} />
-        </Section>
-      </Card>
-
-      <Card>
-        <Section title="What I am not publishing">
-          {study.privateNote.map(paragraph => (
-            <BodyText key={paragraph.slice(0, 32)}>{paragraph}</BodyText>
-          ))}
         </Section>
       </Card>
     </ScrollPage>

@@ -12,6 +12,14 @@ export interface Project {
 
 export const projects: readonly Project[] = [
   {
+    name: 'Support Desk MCP',
+    description:
+      'Support queue with an MCP server on top. Shared Zod tool schemas, REST API, web UI, and one audit log for browser and MCP tool calls.',
+    tags: ['TypeScript', 'MCP', 'Fastify', 'React', 'PostgreSQL', 'Zod', 'Monorepo'],
+    repo: SITE.supportDeskRepo,
+    caseStudy: ROUTES.projectsSupportDesk,
+  },
+  {
     name: 'Trudge',
     description:
       'Privacy-first mobile product for sensitive personal data. Local-first client, encrypted storage, thin API that never sees readable user content. TypeScript monorepo with 950+ unit tests. Solo end-to-end ownership.',
