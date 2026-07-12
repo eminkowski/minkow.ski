@@ -17,7 +17,7 @@ export const TEXT_OPACITY = {
   primary: 1,
   link: 0.8,
   secondary: 0.7,
-  body: 0.6,
+  body: 0.68,
   muted: 0.5,
 } as const
 
@@ -36,6 +36,6 @@ export const textClass: Record<TextOpacityToken, string> = {
   primary: 'text-white',
   link: 'text-white/80',
   secondary: 'text-white/70',
-  body: 'text-white/60',
+  body: 'text-white/68',
   muted: 'text-white/50',
 }

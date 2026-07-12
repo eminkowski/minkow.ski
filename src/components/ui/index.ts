@@ -1,6 +1,8 @@
 export { BodyText } from './BodyText'
 export { BulletList } from './BulletList'
+export { EmailIcon, GitHubIcon, LinkedInIcon, SocialTileLabel } from './BrandIcon'
 export { CaseStudyScreenshot } from './CaseStudyScreenshot'
+export { CaseStudyScreenshotGrid } from './CaseStudyScreenshotGrid'
 export { Card } from './Card'
 export { ExternalLink } from './ExternalLink'
 export { LinkArrow } from './LinkArrow'

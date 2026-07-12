@@ -1,10 +1,34 @@
 import { SITE } from '../lib/site'
 
+export const TRUDGE_SCREENSHOTS = [
+  {
+    src: '/projects/trudge/today.png',
+    alt: 'Trudge Today screen with progress, check-in, and daily actions',
+    caption:
+      'Daily hub: progress, check-in, reflection, and quick paths into journal and meetings.',
+  },
+  {
+    src: '/projects/trudge/settings.png',
+    alt: 'Trudge privacy and security settings with app lock and encryption PIN',
+    caption:
+      'App lock, encryption PIN, and stealth icon. Privacy as product surface, not a footnote.',
+  },
+  {
+    src: '/projects/trudge/data.png',
+    alt: 'Trudge data settings with encrypted backup and export options',
+    caption: 'Encrypted backup and export on your terms. Local-first by default.',
+  },
+] as const
+
 export const TRUDGE_CASE_STUDY = {
+  kind: 'private' as const,
   name: 'Trudge',
+  linkLabel: 'trudge.app',
   tagline:
     'Privacy-first mobile companion for sensitive personal data. Local-first architecture, client-side encryption, and a thin API that never handles readable user content.',
   tags: ['React Native', 'TypeScript', 'Hono', 'PostgreSQL', 'OpenAPI', 'Monorepo'],
+  listDescription:
+    'Privacy-first mobile product for sensitive personal data. The app uses local encrypted storage, a thin API that never sees readable user content, and a TypeScript monorepo with 950+ tests. I owned the product end to end.',
   url: SITE.trudge,
   role: {
     title: 'Founder / lead engineer',
@@ -14,13 +38,15 @@ export const TRUDGE_CASE_STUDY = {
     trademark: 'US trademark filed',
   },
   summary: [
-    'Trudge is a privacy-first mobile companion built for people managing sensitive personal health and recovery data on their phones. The product is local-first: the app is the system of record, and the backend exists only for public reference data, app configuration, and optional encrypted backups the server cannot read.',
-    'I designed and built the whole thing myself: mobile app, API, shared types, CI, and store pipelines. The goal was a codebase I can still maintain in five years, not a quick demo.',
+    'Trudge is a privacy-first mobile companion built for people keeping sensitive personal notes, recovery tools, and daily check-ins on their phones. The product is local-first: the app is the system of record, and the backend exists only for public reference data, app configuration, and optional encrypted backups the server cannot read.',
+    'I designed and built the full system myself, including the mobile app, API, shared types, CI, and store pipelines. The goal was a codebase I can still maintain in five years, not a quick demo.',
   ],
   problem: [
     'Apps in this space often ask users to trust a cloud account with deeply personal information. The catch is simple: the more useful the product, the more data leaves the device.',
     'I wanted something useful day to day (tracking, journaling, directory lookup) without the server ever holding readable personal content. That constraint shaped every major decision.',
   ],
+  architectureIntro:
+    'In plain terms, the phone owns the private data. The server only helps with public data, app configuration, and optional encrypted backups.',
   architecture: [
     {
       label: 'Mobile (the product):',
@@ -53,7 +79,7 @@ export const TRUDGE_CASE_STUDY = {
       response: 'Strict layering (hooks / services / routes), documented ADRs',
     },
     {
-      constraint: 'API must stay evolvable',
+      constraint: 'API must stay predictable',
       response: 'OpenAPI schema-first routes with shared Zod validation',
     },
     {
@@ -84,7 +110,7 @@ export const TRUDGE_CASE_STUDY = {
     'Architecture decisions recorded as ADRs (stack choices, storage, API style, privacy posture)',
   ],
   ownership: [
-    'System architecture and threat-model-aligned data boundaries',
+    'System architecture and privacy-focused data boundaries',
     'Mobile app: navigation, design system, local data layer, encryption integration',
     'Backend: API design, database schema, ingestion jobs for public directory data',
     'Shared contracts, test strategy, and developer documentation',
@@ -94,4 +120,5 @@ export const TRUDGE_CASE_STUDY = {
     'The codebase is private. This case study does not describe product positioning, launch sequencing, differentiated UX patterns, content strategy, or operational details that would help a competitor replicate the product rather than evaluate my engineering.',
     'Happy to walk through architecture, code organization, and testing in interviews. Engineering depth, not product spoilers.',
   ],
+  screenshots: TRUDGE_SCREENSHOTS,
 } as const

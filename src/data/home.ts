@@ -1,13 +1,53 @@
 import { ROUTES } from '../lib/routes'
 import { SITE } from '../lib/site'
 
-export const CAPABILITIES = [
-  'Systems Architecture',
+export const HOME_LABELS = {
+  portfolio: 'Portfolio',
+  about: 'About',
+  github: 'GitHub',
+  featured: 'Featured',
+  publicCode: 'Public code',
+  projects: 'Projects',
+  studio: 'Studio',
+  focus: 'Focus',
+  resume: 'Resume',
+  linkedin: 'LinkedIn',
+  email: 'Email',
+} as const
+
+export const HOME_CTA = {
+  background: 'Background',
+  readCaseStudy: 'Read case study',
+  viewAll: 'View all',
+  viewPdf: 'View PDF',
+} as const
+
+export const HOME_FEATURED_TITLE = 'Trudge'
+
+export const HOME_AGENT_TOOLING_TITLE = 'AI agent tooling'
+
+export const HOME_AGENT_TOOLING_BLURB =
+  'Support desk app with audit logging and safety checks for AI agent workflows.'
+
+export const HOME_INTRO =
+  'Lead full-stack engineer with 20 years of experience building B2B SaaS products, backend systems, frontend architecture, and AWS infrastructure. Recent work focuses on AI-assisted engineering tools, auditability, privacy-first product design, and systems that make messy workflows easier to understand, use, and maintain.'
+
+export const HOME_STATUS = 'Available for remote roles'
+
+export const HOME_GITHUB_SUBTITLE = 'Public projects and code'
+
+export const TRUDGE_BLURB =
+  'Privacy-first recovery app with local encrypted storage and 950+ tests.'
+
+export const HOME_FOCUS = [
+  'System Architecture',
   'API Design',
   'Performance Engineering',
   'Full-Stack Development',
   'Technical Leadership',
 ] as const
+
+export const HOME_METRICS_LABEL = 'Experience'
 
 export const METRICS = [
   { value: '20', label: 'yrs exp' },
@@ -25,11 +65,11 @@ interface HomeTileLayout {
 
 /**
  * Desktop grid (lg+):
- * [ Hero      ][ Hero      ][ Status    ]
+ * [ Hero      ][ Hero      ][ About     ]
  * [ Hero      ][ Hero      ][ GitHub    ]
  * [ Resume    ][ Email     ][ LinkedIn  ]
- * [ Numbers   ][ Capabilities][ Studio  ]
- * [ Featured  ][ Featured  ][ Projects  ]
+ * [ Numbers   ][ Focus     ][ Studio    ]
+ * [ Trudge    ][ Agent tools][ Projects  ]
  */
 export const HOME_TILE_LAYOUT: Record<string, HomeTileLayout> = {
   hero: {
@@ -37,7 +77,7 @@ export const HOME_TILE_LAYOUT: Record<string, HomeTileLayout> = {
     tablet: 'sm:col-span-2',
     desktop: 'lg:col-start-1 lg:row-start-1 lg:col-span-2 lg:row-span-2',
   },
-  status: {
+  about: {
     order: 'order-2',
     desktop: 'lg:col-start-3 lg:row-start-1 lg:col-span-1',
   },
@@ -47,35 +87,38 @@ export const HOME_TILE_LAYOUT: Record<string, HomeTileLayout> = {
   },
   featured: {
     order: 'order-4',
-    tablet: 'sm:col-span-2',
-    desktop: 'lg:col-start-1 lg:row-start-5 lg:col-span-2',
+    desktop: 'lg:col-start-1 lg:row-start-5 lg:col-span-1',
+  },
+  agentTooling: {
+    order: 'order-5',
+    desktop: 'lg:col-start-2 lg:row-start-5 lg:col-span-1',
   },
   projects: {
-    order: 'order-5',
+    order: 'order-6',
     desktop: 'lg:col-start-3 lg:row-start-5 lg:col-span-1',
   },
   studio: {
-    order: 'order-6',
+    order: 'order-7',
     desktop: 'lg:col-start-3 lg:row-start-4 lg:col-span-1',
   },
-  capabilities: {
-    order: 'order-7',
+  focus: {
+    order: 'order-8',
     desktop: 'lg:col-start-2 lg:row-start-4 lg:col-span-1',
   },
   numbers: {
-    order: 'order-8',
+    order: 'order-9',
     desktop: 'lg:col-start-1 lg:row-start-4 lg:col-span-1',
   },
   resume: {
-    order: 'order-9',
+    order: 'order-10',
     desktop: 'lg:col-start-1 lg:row-start-3 lg:col-span-1',
   },
   linkedin: {
-    order: 'order-10',
+    order: 'order-11',
     desktop: 'lg:col-start-3 lg:row-start-3 lg:col-span-1',
   },
   email: {
-    order: 'order-11',
+    order: 'order-12',
     tablet: 'sm:col-span-2 lg:col-span-1',
     desktop: 'lg:col-start-2 lg:row-start-3 lg:col-span-1',
   },
@@ -90,7 +133,9 @@ export const HOME_LINKS = {
   studio: SITE.studio,
   studioName: SITE.studioName,
   featuredRoute: ROUTES.projectsTrudge,
+  agentToolingRoute: ROUTES.projectsSupportDesk,
   projectsRoute: ROUTES.projects,
+  aboutRoute: ROUTES.about,
 } as const
 
 export function homeTileClass(tile: keyof typeof HOME_TILE_LAYOUT): string {

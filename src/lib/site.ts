@@ -15,6 +15,7 @@ export const SITE = {
   trudge: 'https://trudge.app',
   repo: 'https://github.com/eminkowski/minkow-ski',
   supportDeskRepo: 'https://github.com/eminkowski/support-desk-mcp',
+  agentEvalHarnessRepo: 'https://github.com/eminkowski/agent-eval-harness',
 } as const
 
 export function pageTitle(pathname: string): string {
@@ -26,5 +27,6 @@ const PAGE_TITLES: Record<AppRoute, string> = {
   [ROUTES.projects]: `Projects | ${SITE.domain}`,
   [ROUTES.projectsTrudge]: `Trudge case study | ${SITE.domain}`,
   [ROUTES.projectsSupportDesk]: `Support Desk MCP | ${SITE.domain}`,
+  [ROUTES.projectsAgentEvalHarness]: `Agent Eval Harness | ${SITE.domain}`,
   [ROUTES.about]: `About | ${SITE.domain}`,
 }

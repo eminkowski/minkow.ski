@@ -1,3 +1,4 @@
+import { ROUTES } from '../lib/routes'
 import { SITE } from '../lib/site'
 
 export const SUPPORT_DESK_SCREENSHOTS = [
@@ -19,24 +20,35 @@ export const SUPPORT_DESK_SCREENSHOTS = [
 ] as const
 
 export const SUPPORT_DESK_CASE_STUDY = {
+  kind: 'public' as const,
   name: 'Support Desk MCP',
+  plainEnglish:
+    'This is a small support desk app that can be used either through a normal web interface or through an AI assistant. Every action is logged, so a human can see exactly what the assistant did and why.',
   tagline:
-    'Support queue with an MCP server on top. One REST API, shared Zod tool schemas, and an audit log that records browser and MCP calls in the same place.',
+    'A support queue with an MCP server on top. The browser and AI assistant use the same underlying API, shared Zod schemas, and one audit log.',
   tags: ['TypeScript', 'MCP', 'Fastify', 'React', 'PostgreSQL', 'Zod', 'Monorepo'],
+  listDescription:
+    'A support desk you can use in a browser or through an AI assistant, with every action logged for review. Public codebase with a web UI, API, and agent tooling.',
   repo: SITE.supportDeskRepo,
+  pairedCaseStudy: ROUTES.projectsAgentEvalHarness,
+  pairedLabel: 'Agent Eval Harness',
+  pairedRepo: SITE.agentEvalHarnessRepo,
   role: {
     title: 'Solo build',
     context: 'Portfolio project',
     status: 'Public on GitHub',
   },
   summary: [
-    'A small support desk with a web UI and an MCP server that exposes the same operations as typed tools. The API owns business logic and persistence. The MCP layer validates tool arguments and forwards to REST. The browser never speaks MCP; it calls /api/* directly.',
-    'The interesting part is the shared contract: Zod schemas in packages/shared define tool inputs once, consumed by the MCP server, the REST API, and the web assist path. Every invocation lands in one audit table, labeled by actor (web-ui, web-assist, mcp-agent).',
+    'A small support desk with a web UI and an MCP server that exposes the same operations as typed tools. The API owns the business logic and persistence. The MCP layer validates tool arguments and forwards requests to the API. The browser never speaks MCP; it calls /api/* directly.',
+    'The important part is the shared contract. Zod schemas in packages/shared define tool inputs once, then the MCP server, REST API, and web assist path all use the same definitions. Every invocation lands in one audit table, labeled by actor: web-ui, web-assist, or mcp-agent.',
+    'The companion project, Agent Eval Harness, imports those audit rows or records live MCP runs into trace JSON. It regression-tests tool choice, write guards, and ordering in CI.',
   ],
   problem: [
-    'MCP integrations often grow as one-off glue per client: duplicate validation, no shared audit trail, and unclear boundaries between what the client decides and what the server enforces.',
+    'MCP integrations often grow as one-off glue per client, with duplicate validation, no shared audit trail, and unclear boundaries between what the client decides and what the server enforces.',
     'I wanted a queue you can operate from a browser or from an MCP client, with the same tools, the same data, and a log that shows both paths side by side.',
   ],
+  architectureIntro:
+    'In plain terms, the API is the center of the system. The browser and MCP server take different paths into the same business logic, and both paths leave an audit trail.',
   architecture: [
     {
       label: 'REST API:',
@@ -48,7 +60,7 @@ export const SUPPORT_DESK_CASE_STUDY = {
     },
     {
       label: 'MCP server:',
-      body: 'Five tools with Zod inputSchema. stdio for local clients, Streamable HTTP at /mcp for remote connectors. Calls the REST API; does not touch Postgres directly.',
+      body: 'Five typed tools with Zod input schemas. stdio for local clients, Streamable HTTP at /mcp for remote connectors. Calls the REST API; does not touch Postgres directly.',
     },
     {
       label: 'Shared package:',
@@ -62,7 +74,7 @@ export const SUPPORT_DESK_CASE_STUDY = {
     },
     {
       constraint: 'Writes must be explicit',
-      response: 'MCP add_comment requires confirmed: true; web comments via REST only',
+      response: 'MCP add_comment requires confirmed: true; browser comments go through REST only',
     },
     {
       constraint: 'Observable cross-client usage',
@@ -84,7 +96,7 @@ export const SUPPORT_DESK_CASE_STUDY = {
     },
     {
       title: 'Explicit quick searches over phrase parsing',
-      body: 'Ask the queue quick-search buttons map to fixed tool calls in code, not regex on user text. Typed questions optionally go through the Anthropic API with the same tool definitions as MCP. Without a key, the panel stays honest: quick searches only.',
+      body: 'Ask the queue quick-search buttons map to fixed tool calls in code, not regex on user text. Typed questions optionally go through the Anthropic API with the same tool definitions as MCP. Without an Anthropic key, the panel stays honest and only offers fixed quick searches.',
     },
     {
       title: 'Tool log as the integration proof',
@@ -96,14 +108,14 @@ export const SUPPORT_DESK_CASE_STUDY = {
     'Biome for lint/format; GitHub Actions CI with Postgres service',
     'Vitest on shared formatters and API integration tests',
     '/health checks database connectivity (503 when Postgres is down)',
-    'Documented walkthrough for web-only and MCP HTTP paths',
+    'Documented walkthroughs for web-only and MCP HTTP paths',
   ],
   ownership: [
     'System design: REST + MCP boundaries, audit model, write gating',
     'API: Fastify routes, Prisma schema, seed data, assist routing',
     'MCP: tool registration, stdio and HTTP transports, API client',
     'Web: queue UI, tool log with REST/MCP legend, Ask the queue panel',
-    'Shared schemas, formatters, and copy for audit entries',
+    'Shared schemas, formatters, and audit entry copy',
   ],
   screenshots: SUPPORT_DESK_SCREENSHOTS,
 } as const

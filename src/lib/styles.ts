@@ -1,7 +1,7 @@
 import { textClass } from './theme'
 
 const cardBase = [
-  'rounded-xl border border-white/[0.06] [border-top-color:rgba(255,255,255,0.12)] bg-white/[0.02]',
+  'rounded-xl border border-white/[0.08] [border-top-color:rgba(255,255,255,0.12)] bg-white/[0.03]',
   'backdrop-blur-[8px]',
   'p-4 sm:p-5 flex flex-col gap-3',
 ].join(' ')
@@ -19,7 +19,7 @@ export const label = `font-mono text-[10px] ${textClass.muted} uppercase trackin
 
 export const chip = [
   'font-mono text-[10px] px-2 py-1 rounded-md bg-white/[0.05]',
-  textClass.secondary,
+  textClass.body,
   'border border-white/[0.08] cursor-default',
 ].join(' ')
 
