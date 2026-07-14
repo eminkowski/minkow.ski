@@ -5,6 +5,7 @@ import { Home } from './routes/home'
 import { Projects } from './routes/projects'
 import { ProjectsTrudge } from './routes/projects-trudge'
 import { ProjectsSupportDesk } from './routes/projects-support-desk'
+import { ProjectsWorksurface } from './routes/projects-worksurface'
 import { ProjectsAgentEvalHarness } from './routes/projects-agent-eval-harness'
 import { About } from './routes/about'
 
@@ -34,6 +35,12 @@ const projectsSupportDeskRoute = createRoute({
   component: ProjectsSupportDesk,
 })
 
+const projectsWorksurfaceRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: ROUTES.projectsWorksurface,
+  component: ProjectsWorksurface,
+})
+
 const projectsAgentEvalHarnessRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: ROUTES.projectsAgentEvalHarness,
@@ -51,6 +58,7 @@ const routeTree = rootRoute.addChildren([
   projectsRoute,
   projectsTrudgeRoute,
   projectsSupportDeskRoute,
+  projectsWorksurfaceRoute,
   projectsAgentEvalHarnessRoute,
   aboutRoute,
 ])

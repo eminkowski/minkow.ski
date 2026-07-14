@@ -24,7 +24,8 @@ interface CaseStudyContent {
   problem: readonly string[]
   architecture: readonly CaseStudyArchitectureEntry[]
   architectureIntro?: string
-  constraints: readonly CaseStudyConstraint[]
+  /** Omit when constraints are folded into decisions. */
+  constraints?: readonly CaseStudyConstraint[]
   decisions: readonly CaseStudyDecision[]
   quality: readonly string[]
   ownership: readonly string[]

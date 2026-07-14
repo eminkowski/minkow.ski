@@ -24,10 +24,13 @@ export const HOME_CTA = {
 
 export const HOME_FEATURED_TITLE = 'Trudge'
 
-export const HOME_AGENT_TOOLING_TITLE = 'AI agent tooling'
+export const HOME_PUBLIC_CODE_TITLE = 'Support Desk MCP'
 
-export const HOME_AGENT_TOOLING_BLURB =
-  'Support desk app with audit logging and safety checks for AI agent workflows.'
+export const HOME_PUBLIC_CODE_BLURB =
+  'Dense support-operations workspace with agent action review, audit history, and safety checks before writes.'
+
+export const HOME_PROJECTS_BLURB =
+  'Selected work across product engineering, agent workflows, design systems, and evaluation tooling.'
 
 export const HOME_INTRO =
   'Lead full-stack engineer with 20 years of experience building B2B SaaS products, backend systems, frontend architecture, and AWS infrastructure. Recent work focuses on AI-assisted engineering tools, auditability, privacy-first product design, and systems that make messy workflows easier to understand, use, and maintain.'
@@ -37,7 +40,7 @@ export const HOME_STATUS = 'Available for remote roles'
 export const HOME_GITHUB_SUBTITLE = 'Public projects and code'
 
 export const TRUDGE_BLURB =
-  'Privacy-first recovery app with local encrypted storage and 950+ tests.'
+  'Privacy-first mobile product with encrypted local storage, multilingual content, and a TypeScript monorepo backed by 950+ tests.'
 
 export const HOME_FOCUS = [
   'System Architecture',
@@ -69,7 +72,7 @@ interface HomeTileLayout {
  * [ Hero      ][ Hero      ][ GitHub    ]
  * [ Resume    ][ Email     ][ LinkedIn  ]
  * [ Numbers   ][ Focus     ][ Studio    ]
- * [ Trudge    ][ Agent tools][ Projects  ]
+ * [ Trudge    ][ Support Desk][ Projects ]
  */
 export const HOME_TILE_LAYOUT: Record<string, HomeTileLayout> = {
   hero: {
@@ -89,7 +92,7 @@ export const HOME_TILE_LAYOUT: Record<string, HomeTileLayout> = {
     order: 'order-4',
     desktop: 'lg:col-start-1 lg:row-start-5 lg:col-span-1',
   },
-  agentTooling: {
+  publicCode: {
     order: 'order-5',
     desktop: 'lg:col-start-2 lg:row-start-5 lg:col-span-1',
   },
@@ -133,7 +136,7 @@ export const HOME_LINKS = {
   studio: SITE.studio,
   studioName: SITE.studioName,
   featuredRoute: ROUTES.projectsTrudge,
-  agentToolingRoute: ROUTES.projectsSupportDesk,
+  publicCodeRoute: ROUTES.projectsSupportDesk,
   projectsRoute: ROUTES.projects,
   aboutRoute: ROUTES.about,
 } as const

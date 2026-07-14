@@ -16,7 +16,7 @@ export const AGENT_EVAL_HARNESS_CASE_STUDY = {
     'Record agent tool runs, replay them with fixtures, and check tool choice, arguments, ordering, and write guards. Deterministic CI without an LLM in the loop.',
   tags: ['TypeScript', 'MCP', 'Zod', 'Vitest', 'Monorepo', 'CLI'],
   listDescription:
-    'Automated checks for AI agent workflows. It tests whether an agent picked the right action, followed safety rules, and stayed within limits before making changes. Pairs with Support Desk MCP.',
+    'Evaluation harness for agent workflows. Tests action selection, policy compliance, argument limits, and whether unsafe writes are blocked before execution. Pairs with Support Desk MCP.',
   repo: SITE.agentEvalHarnessRepo,
   pairedCaseStudy: ROUTES.projectsSupportDesk,
   pairedLabel: 'Support Desk MCP',

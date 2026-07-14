@@ -10,7 +10,7 @@ interface ProjectCardProps {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Card>
+    <Card className="h-full">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <p className={label}>{UI_LABELS.project}</p>
         <div className="flex flex-wrap gap-x-3 gap-y-1">
@@ -33,7 +33,9 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
       <p className="text-white font-medium">{project.name}</p>
       <p className={`text-sm ${textClass.secondary} leading-relaxed`}>{project.description}</p>
-      <TagList tags={project.tags} />
+      <div className="mt-auto pt-1">
+        <TagList tags={project.tags} />
+      </div>
     </Card>
   )
 }

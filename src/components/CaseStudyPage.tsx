@@ -147,7 +147,13 @@ export function CaseStudyPage({ study, diagram, prepend }: CaseStudyPageProps) {
       </Card>
 
       <Card>
-        <Section title="Key decisions">
+        <Section
+          title={
+            study.constraints?.length
+              ? 'Key decisions'
+              : 'Key decisions and constraints'
+          }
+        >
           <div className="flex flex-col gap-4">
             {study.decisions.map(({ title, body }) => (
               <div key={title} className="flex flex-col gap-1.5">
@@ -173,18 +179,20 @@ export function CaseStudyPage({ study, diagram, prepend }: CaseStudyPageProps) {
         </Section>
       </Card>
 
-      <Card>
-        <Section title="Constraints">
-          <div className="flex flex-col gap-2">
-            {study.constraints.map(({ constraint, response }) => (
-              <div key={constraint} className={constraintRowClass}>
-                <p className={`text-sm ${textClass.secondary}`}>{constraint}</p>
-                <p className={`text-sm ${textClass.muted}`}>{response}</p>
-              </div>
-            ))}
-          </div>
-        </Section>
-      </Card>
+      {study.constraints && study.constraints.length > 0 ? (
+        <Card>
+          <Section title="Constraints">
+            <div className="flex flex-col gap-2">
+              {study.constraints.map(({ constraint, response }) => (
+                <div key={constraint} className={constraintRowClass}>
+                  <p className={`text-sm ${textClass.secondary}`}>{constraint}</p>
+                  <p className={`text-sm ${textClass.muted}`}>{response}</p>
+                </div>
+              ))}
+            </div>
+          </Section>
+        </Card>
+      ) : null}
 
       <Card>
         <Section title="Quality and operability">

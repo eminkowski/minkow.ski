@@ -3,6 +3,7 @@ export const ROUTES = {
   projects: '/projects',
   projectsTrudge: '/projects/trudge',
   projectsSupportDesk: '/projects/support-desk-mcp',
+  projectsWorksurface: '/projects/worksurface-ui',
   projectsAgentEvalHarness: '/projects/agent-eval-harness',
   about: '/about',
 } as const

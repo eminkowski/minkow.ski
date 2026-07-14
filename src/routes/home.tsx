@@ -1,8 +1,6 @@
 import { ScrambleText } from '../components/ScrambleText'
 import { Card, EmailIcon, GitHubIcon, LinkedInIcon, LinkCard, LinkArrow, PageGrid, SocialTileLabel, TagList } from '../components/ui'
 import {
-  HOME_AGENT_TOOLING_BLURB,
-  HOME_AGENT_TOOLING_TITLE,
   HOME_CTA,
   HOME_FEATURED_TITLE,
   HOME_FOCUS,
@@ -11,6 +9,9 @@ import {
   HOME_LABELS,
   HOME_LINKS,
   HOME_METRICS_LABEL,
+  HOME_PROJECTS_BLURB,
+  HOME_PUBLIC_CODE_BLURB,
+  HOME_PUBLIC_CODE_TITLE,
   HOME_STATUS,
   METRICS,
   TRUDGE_BLURB,
@@ -69,10 +70,10 @@ export function Home() {
         </p>
       </LinkCard>
 
-      <LinkCard to={HOME_LINKS.agentToolingRoute} className={homeTileClass('agentTooling')}>
+      <LinkCard to={HOME_LINKS.publicCodeRoute} className={homeTileClass('publicCode')}>
         <p className={label}>{HOME_LABELS.publicCode}</p>
-        <p className={linkTitle}>{HOME_AGENT_TOOLING_TITLE}</p>
-        <p className={`text-sm ${textClass.secondary} leading-relaxed`}>{HOME_AGENT_TOOLING_BLURB}</p>
+        <p className={linkTitle}>{HOME_PUBLIC_CODE_TITLE}</p>
+        <p className={`text-sm ${textClass.secondary} leading-relaxed`}>{HOME_PUBLIC_CODE_BLURB}</p>
         <p className={linkTextMuted}>
           {HOME_CTA.readCaseStudy} <LinkArrow kind="forward" />
         </p>
@@ -80,7 +81,8 @@ export function Home() {
 
       <LinkCard to={HOME_LINKS.projectsRoute} className={homeTileClass('projects')}>
         <p className={label}>{HOME_LABELS.projects}</p>
-        <p className={linkText}>
+        <p className={`text-sm ${textClass.secondary} leading-relaxed`}>{HOME_PROJECTS_BLURB}</p>
+        <p className={linkTextMuted}>
           {HOME_CTA.viewAll} <LinkArrow kind="forward" />
         </p>
       </LinkCard>

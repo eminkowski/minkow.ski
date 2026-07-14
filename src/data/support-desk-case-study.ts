@@ -41,7 +41,7 @@ export const SUPPORT_DESK_CASE_STUDY = {
     'Monorepo',
   ],
   listDescription:
-    'Support desk with a dense React workflow UI: saved views, compact queue, split-pane detail, command palette, AI action review, and unified audit trail across browser and MCP activity.',
+    'Dense support-operations workspace where browser and MCP actions share one case history. Includes queue workflows, agent-proposed writes, human confirmation, and a unified audit trail.',
   repo: SITE.supportDeskRepo,
   pairedCaseStudy: ROUTES.projectsAgentEvalHarness,
   pairedLabel: 'Agent Eval Harness',
