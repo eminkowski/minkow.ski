@@ -28,6 +28,7 @@ interface CaseStudyContent {
   decisions: readonly CaseStudyDecision[]
   quality: readonly string[]
   ownership: readonly string[]
+  outcome?: readonly string[]
 }
 
 export interface PublicCaseStudy extends CaseStudyContent {

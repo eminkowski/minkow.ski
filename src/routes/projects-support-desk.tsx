@@ -13,7 +13,10 @@ export function ProjectsSupportDesk() {
       prepend={
         <Card>
           <Section title="Screenshots">
-            <CaseStudyScreenshotGrid screenshots={study.screenshots} />
+            <CaseStudyScreenshotGrid
+              screenshots={study.screenshots}
+              layout="heroSequence"
+            />
           </Section>
         </Card>
       }

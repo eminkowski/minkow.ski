@@ -13,6 +13,8 @@ interface CaseStudyScreenshotProps {
   caption: string
   /** Phone screenshots stay compact; web screenshots stay full-width. */
   variant?: 'web' | 'phone'
+  /** Narrow figure for supporting architecture details. */
+  size?: 'full' | 'detail'
 }
 
 export function CaseStudyScreenshot({
@@ -20,10 +22,12 @@ export function CaseStudyScreenshot({
   alt,
   caption,
   variant = 'web',
+  size = 'full',
 }: CaseStudyScreenshotProps) {
   const [open, setOpen] = useState(false)
   const titleId = useId()
   const isPhone = variant === 'phone'
+  const isDetail = size === 'detail'
 
   useEffect(() => {
     if (!open) return
@@ -44,7 +48,13 @@ export function CaseStudyScreenshot({
 
   return (
     <>
-      <figure className={cn('flex w-full flex-col gap-2', isPhone && 'max-w-[220px]')}>
+      <figure
+        className={cn(
+          'flex w-full flex-col gap-2',
+          isPhone && 'max-w-[220px]',
+          isDetail && 'max-w-md',
+        )}
+      >
         <button
           type="button"
           onClick={() => setOpen(true)}

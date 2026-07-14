@@ -147,6 +147,19 @@ export function CaseStudyPage({ study, diagram, prepend }: CaseStudyPageProps) {
       </Card>
 
       <Card>
+        <Section title="Key decisions">
+          <div className="flex flex-col gap-4">
+            {study.decisions.map(({ title, body }) => (
+              <div key={title} className="flex flex-col gap-1.5">
+                <p className={`text-sm ${textClass.link} font-medium`}>{title}</p>
+                <p className={`text-sm ${textClass.muted} leading-relaxed`}>{body}</p>
+              </div>
+            ))}
+          </div>
+        </Section>
+      </Card>
+
+      <Card>
         <Section title="Architecture">
           {study.architectureIntro && <BodyText>{study.architectureIntro}</BodyText>}
           {diagram}
@@ -174,19 +187,6 @@ export function CaseStudyPage({ study, diagram, prepend }: CaseStudyPageProps) {
       </Card>
 
       <Card>
-        <Section title="Three decisions">
-          <div className="flex flex-col gap-4">
-            {study.decisions.map(({ title, body }) => (
-              <div key={title} className="flex flex-col gap-1.5">
-                <p className={`text-sm ${textClass.link} font-medium`}>{title}</p>
-                <p className={`text-sm ${textClass.muted} leading-relaxed`}>{body}</p>
-              </div>
-            ))}
-          </div>
-        </Section>
-      </Card>
-
-      <Card>
         <Section title="Quality and operability">
           <BulletList items={study.quality} />
         </Section>
@@ -197,6 +197,16 @@ export function CaseStudyPage({ study, diagram, prepend }: CaseStudyPageProps) {
           <BulletList items={study.ownership} />
         </Section>
       </Card>
+
+      {study.outcome && (
+        <Card>
+          <Section title="Outcome">
+            {study.outcome.map(paragraph => (
+              <BodyText key={paragraph.slice(0, 32)}>{paragraph}</BodyText>
+            ))}
+          </Section>
+        </Card>
+      )}
 
       {study.kind === 'private' && (
         <Card>
