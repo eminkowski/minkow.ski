@@ -26,7 +26,8 @@ export function Root() {
           PAGE_PADDING_X,
           'pt-[calc(4.5rem+env(safe-area-inset-top))] sm:pt-20',
           'pb-[max(2rem,env(safe-area-inset-bottom))] sm:pb-12',
-          'flex items-start lg:items-center justify-center',
+          // safe center: keep short pages centered without clipping tall pages
+          'flex items-start justify-center lg:[align-items:safe_center]',
           'scroll-pane',
         ].join(' ')}
       >
