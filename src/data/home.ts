@@ -30,7 +30,7 @@ export const HOME_PUBLIC_CODE_BLURB =
   'Dense support-operations workspace with agent action review, audit history, and safety checks before writes.'
 
 export const HOME_PROJECTS_BLURB =
-  'Selected work across product engineering, agent workflows, and design systems.'
+  'Selected work across product engineering, agent workflows, design systems, and durable orchestration.'
 
 export const HOME_INTRO =
   'Lead full-stack engineer with 20 years of experience building B2B SaaS products, backend systems, frontend architecture, and AWS infrastructure. Recent work focuses on AI-assisted engineering tools, auditability, privacy-first product design, and systems that make messy workflows easier to understand, use, and maintain.'

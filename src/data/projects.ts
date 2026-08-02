@@ -2,6 +2,7 @@ import { ROUTES, type AppRoute } from '../lib/routes'
 import { SITE } from '../lib/site'
 import { AGENT_EVAL_HARNESS_CASE_STUDY } from './agent-eval-harness-case-study'
 import { SUPPORT_DESK_CASE_STUDY } from './support-desk-case-study'
+import { TEMPORAL_CASEFLOW_CASE_STUDY } from './temporal-caseflow-case-study'
 import { TRUDGE_CASE_STUDY } from './trudge-case-study'
 import { WORKSURFACE_CASE_STUDY } from './worksurface-case-study'
 
@@ -47,6 +48,13 @@ export const projects: readonly Project[] = [
     tags: WORKSURFACE_CASE_STUDY.tags,
     repo: SITE.worksurfaceRepo,
     caseStudy: ROUTES.projectsWorksurface,
+  },
+  {
+    name: TEMPORAL_CASEFLOW_CASE_STUDY.name,
+    description: TEMPORAL_CASEFLOW_CASE_STUDY.listDescription,
+    tags: TEMPORAL_CASEFLOW_CASE_STUDY.tags,
+    repo: SITE.temporalCaseflowRepo,
+    caseStudy: ROUTES.projectsTemporalCaseflow,
   },
   {
     name: AGENT_EVAL_HARNESS_CASE_STUDY.name,

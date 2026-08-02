@@ -53,9 +53,11 @@ function CaseStudyHeaderLinks({ study }: { study: PortfolioCaseStudy }) {
         <ExternalLink href={study.repo} variant="meta">
           {UI_LABELS.github} <LinkArrow />
         </ExternalLink>
-        <Link to={study.pairedCaseStudy} className={metaLink}>
-          {study.pairedLabel} <LinkArrow kind="forward" />
-        </Link>
+        {study.pairedCaseStudy && study.pairedLabel ? (
+          <Link to={study.pairedCaseStudy} className={metaLink}>
+            {study.pairedLabel} <LinkArrow kind="forward" />
+          </Link>
+        ) : null}
         <span className={`font-mono text-xs ${textClass.muted}`}>{UI_LABELS.codePublic}</span>
       </div>
     )

@@ -36,8 +36,9 @@ export interface PublicCaseStudy extends CaseStudyContent {
   kind: 'public'
   plainEnglish: string
   repo: string
-  pairedCaseStudy: AppRoute
-  pairedLabel: string
+  /** Optional companion case study when the project is not standalone. */
+  pairedCaseStudy?: AppRoute
+  pairedLabel?: string
   role: {
     title: string
     context: string

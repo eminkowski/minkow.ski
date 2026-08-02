@@ -5,6 +5,7 @@ export const ROUTES = {
   projectsSupportDesk: '/projects/support-desk-mcp',
   projectsWorksurface: '/projects/worksurface-ui',
   projectsAgentEvalHarness: '/projects/agent-eval-harness',
+  projectsTemporalCaseflow: '/projects/temporal-caseflow',
   about: '/about',
 } as const
 

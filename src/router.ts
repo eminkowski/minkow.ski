@@ -7,6 +7,7 @@ import { ProjectsTrudge } from './routes/projects-trudge'
 import { ProjectsSupportDesk } from './routes/projects-support-desk'
 import { ProjectsWorksurface } from './routes/projects-worksurface'
 import { ProjectsAgentEvalHarness } from './routes/projects-agent-eval-harness'
+import { ProjectsTemporalCaseflow } from './routes/projects-temporal-caseflow'
 import { About } from './routes/about'
 
 const rootRoute = createRootRoute({ component: Root })
@@ -47,6 +48,12 @@ const projectsAgentEvalHarnessRoute = createRoute({
   component: ProjectsAgentEvalHarness,
 })
 
+const projectsTemporalCaseflowRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: ROUTES.projectsTemporalCaseflow,
+  component: ProjectsTemporalCaseflow,
+})
+
 const aboutRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: ROUTES.about,
@@ -60,6 +67,7 @@ const routeTree = rootRoute.addChildren([
   projectsSupportDeskRoute,
   projectsWorksurfaceRoute,
   projectsAgentEvalHarnessRoute,
+  projectsTemporalCaseflowRoute,
   aboutRoute,
 ])
 

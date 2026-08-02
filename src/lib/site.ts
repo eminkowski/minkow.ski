@@ -17,6 +17,7 @@ export const SITE = {
   supportDeskRepo: 'https://github.com/eminkowski/support-desk-mcp',
   worksurfaceRepo: 'https://github.com/eminkowski/worksurface-ui',
   agentEvalHarnessRepo: 'https://github.com/eminkowski/agent-eval-harness',
+  temporalCaseflowRepo: 'https://github.com/eminkowski/temporal-caseflow',
 } as const
 
 export function pageTitle(pathname: string): string {
@@ -30,5 +31,6 @@ const PAGE_TITLES: Record<AppRoute, string> = {
   [ROUTES.projectsSupportDesk]: `Support Desk MCP | ${SITE.domain}`,
   [ROUTES.projectsWorksurface]: `Worksurface UI | ${SITE.domain}`,
   [ROUTES.projectsAgentEvalHarness]: `Agent Eval Harness | ${SITE.domain}`,
+  [ROUTES.projectsTemporalCaseflow]: `Temporal Caseflow | ${SITE.domain}`,
   [ROUTES.about]: `About | ${SITE.domain}`,
 }
