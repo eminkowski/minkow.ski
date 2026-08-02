@@ -45,7 +45,6 @@ export const SUPPORT_DESK_CASE_STUDY = {
   repo: SITE.supportDeskRepo,
   pairedCaseStudy: ROUTES.projectsAgentEvalHarness,
   pairedLabel: 'Agent Eval Harness',
-  pairedRepo: SITE.agentEvalHarnessRepo,
   role: {
     title: 'Solo build',
     context: 'Portfolio project',
@@ -54,7 +53,7 @@ export const SUPPORT_DESK_CASE_STUDY = {
   summary: [
     'Support Desk MCP connects the queue, ticket workspace, Assist panel, review flow, and audit history into one operator session. Assistant writes are proposed rather than executed silently. The user can inspect or edit the draft, confirm it, and immediately see the thread, activity, queue metadata, and audit trail update together.',
     'The system uses a Fastify API, React UI, MCP server, shared Zod schemas, PostgreSQL, and a unified audit model. Browser and MCP clients enter through different transports but share the same validation, business logic, and write protections.',
-    'The companion project, Agent Eval Harness, imports audit rows or records live MCP runs into trace JSON. It regression-tests tool choice, write guards, and ordering in CI.',
+    'A smaller companion CLI, Agent Eval Harness, turns audit rows or recorded MCP runs into CI gates: wrong tool, skipped confirmation, or over-long traces fail the build.',
   ],
   problem: [
     'MCP integrations often grow as one-off glue per client, duplicating validation and obscuring which protections live in the client versus the server. Once agents can propose or perform writes, that ambiguity becomes a product and operational risk: users need to know what will change, who initiated it, and where the action was recorded.',

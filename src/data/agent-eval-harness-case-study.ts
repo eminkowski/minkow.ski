@@ -1,9 +1,10 @@
 import { ROUTES } from '../lib/routes'
 import { SITE } from '../lib/site'
 
+/** Real `ate eval` output for the bundled Support Desk cases. */
 export const AGENT_EVAL_EXAMPLE_OUTPUT = `PASS  add-comment-confirmed        (4/4)
 PASS  search-open-high             (3/3)
-PASS  write-guard-blocks-unconfirmed  blocked as expected
+PASS  write-guard-blocks-unconfirmed expected fail
 
 3/3 cases passed`
 
@@ -11,28 +12,27 @@ export const AGENT_EVAL_HARNESS_CASE_STUDY = {
   kind: 'public' as const,
   name: 'Agent Eval Harness',
   plainEnglish:
-    'Agent Eval is a testing tool for AI-assisted workflows. It checks whether an AI agent picked the right tool, followed safety rules, and stayed within expected limits before that workflow reaches a real system.',
+    'A CI gate for AI agent tool use. If an agent picks the wrong tool, skips a required confirmation, or takes too many steps, the build fails before that behavior reaches a live system.',
   tagline:
-    'Record agent tool runs, replay them with fixtures, and check tool choice, arguments, ordering, and write guards. Deterministic CI without an LLM in the loop.',
-  tags: ['TypeScript', 'MCP', 'Zod', 'Vitest', 'Monorepo', 'CLI'],
+    'Companion CLI to Support Desk MCP. Structural assertions and fixture replay gate agent writes in CI - no LLM in the default path.',
+  tags: ['TypeScript', 'CI', 'MCP', 'Zod', 'Vitest', 'Monorepo', 'CLI'],
   listDescription:
-    'Evaluation harness for agent workflows. Tests action selection, policy compliance, argument limits, and whether unsafe writes are blocked before execution. Pairs with Support Desk MCP.',
+    'CI companion to Support Desk MCP. Gates agent tool choice, ordering, and write confirmation so unsafe runs fail the build before production.',
   repo: SITE.agentEvalHarnessRepo,
   pairedCaseStudy: ROUTES.projectsSupportDesk,
   pairedLabel: 'Support Desk MCP',
-  pairedRepo: SITE.supportDeskRepo,
   role: {
     title: 'Solo build',
-    context: 'Portfolio project · pairs with Support Desk MCP',
+    context: 'CI companion to Support Desk MCP',
     status: 'Public on GitHub',
   },
   summary: [
-    'Support Desk MCP shows how to expose typed tools and log every invocation. Agent Eval Harness is the testing layer. It imports audit rows or records live MCP runs into trace JSON, then checks structural assertions and replays runs against fixtures in CI.',
-    'The important part is what gets tested. It is not grading the wording of an AI response. It checks tool choice, argument shape, step limits, write guards, and negative cases where bad behavior should fail. Bundled examples run fully offline; live record and import-audit pair with the Support Desk stack when you want real audit rows.',
+    'Support Desk MCP is the product: typed tools, human confirmation, and an audit trail. Agent Eval Harness is the CI layer beside it. It turns audit rows or recorded MCP runs into trace JSON, then fails the build on wrong tools, bad argument shape, skipped write confirmation, or over-long traces.',
+    'It does not grade prose. Bundled examples run offline; live record and import-audit plug into Support Desk when you want fresh traces from a real stack.',
   ],
   problem: [
     'Agent tools look like APIs, but the caller is non-deterministic. Prompt tweaks, new tools, or client upgrades can change which tool runs or skip a confirmation step, often without obvious failures in the final text.',
-    'I wanted a harness that treats agent runs as testable artifacts. Capture once, check the structure, replay with fixtures, and gate merges without calling an LLM on every CI run.',
+    'I wanted a harness that treats agent runs as testable artifacts. Capture once, check structure, replay with fixtures, and gate merges without calling an LLM on every CI run.',
   ],
   architecture: [
     {
@@ -91,7 +91,7 @@ export const AGENT_EVAL_HARNESS_CASE_STUDY = {
   quality: [
     'pnpm monorepo: cli, shared, replay, recorder',
     'Biome + GitHub Actions CI; Vitest on schemas, replay, recorder, and CLI integration',
-    'Bundled Support Desk examples: 3 eval cases including one negative test',
+    'Bundled Support Desk examples: 3 eval cases including one negative write-guard test',
     'Docs with mermaid diagrams: why-agent-evals, how-traces-work, demo walkthrough, ADRs',
   ],
   ownership: [
@@ -103,15 +103,15 @@ export const AGENT_EVAL_HARNESS_CASE_STUDY = {
   ],
   exampleOutput: AGENT_EVAL_EXAMPLE_OUTPUT,
   prepend: {
-    guardSection: {
-      title: 'What a passing eval proves',
-      body:
-        'The harness catches structural mistakes (wrong tool, skipped confirmation, too many steps) before an agent workflow reaches production. The example output below shows real PASS/FAIL results from bundled test cases.',
-    },
     exampleSection: {
-      title: 'Example output',
+      title: 'Write confirmation as a CI gate',
       body:
-        'Offline eval against bundled Support Desk traces and cases. No Docker or MCP client required for this path.',
+        'The third line is a negative test: an unconfirmed add_comment must trip write_guard. PASS + expected fail means the guard still catches unsafe writes - if that guard ever stops failing, this case turns red.',
+    },
+    guardSection: {
+      title: 'What a passing suite proves',
+      body:
+        'Positive cases prove safe tool choice and confirmed writes. The negative case proves unsafe writes still fail assertions. Together they gate agent behavior before a merge, without grading the wording of a model reply.',
     },
   },
 } as const
